@@ -8,6 +8,7 @@ var Stream = require('user-stream'),
     events = require('events'),
     util   = require('util'),
     stream;
+var lastTweetId;    
 
 function TweetAlert(opts) {
   if (!(this instanceof TweetAlert)) {
@@ -65,11 +66,16 @@ TweetAlert.prototype.track = function() {
       // Filter data
       if (tweetAlert.isTracked(json)) {
         var tw = {
+          id_str: json.id_str,
+          in_reply_to_user_id_str: json.in_reply_to_user_id_str,
+          json: json,
           text: json.text,
           screen_name: json.user.screen_name,
           name: json.user.name,
           id: json.user.id
         };
+         
+        if(lastTweetId!==tw.id_str){
 
         if (json.entities.urls) {
           if (Object.prototype.toString.call(json.entities.urls) === '[object Array]') {
@@ -80,6 +86,8 @@ TweetAlert.prototype.track = function() {
         }
 
         tweetAlert.emit('tweet', tw);
+        lastTweetId=tw.id_str;
+        }
       }
     }
   });

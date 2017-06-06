@@ -37,15 +37,28 @@ bot.on('message', message => {
 })
 
 
-// Wait for the board to be ready
+// Wait for the bot to be ready
 bot.on('ready', function() {
     console.log('ready');
     var channel= bot.channels.find("name", "general");
     // Start to track
     app.track();
+
+
     // Listen to tweet alert
     app.on('tweet', function(data) {
-        console.log('New Tweet :: ', data.text, ' by ', data.name , '@' , 'https://twitter.com/' +data.screen_name );
-        channel.send( 'New Tweet :: '+ data.text+ '\n by '+data.name +' @ ' + 'https://twitter.com/' +data.screen_name );
+        //console.log(data);
+        console.log('Twitter :: ', data);
+        if(data.in_reply_to_user_id_str!==null) {
+
+        }else {
+            if (data.text.substring(0, 2) === 'RT') {
+                channel.send('RT ' + ' https://twitter.com/' + data.screen_name + '/status/' + data.id_str);
+            } else {
+                channel.send('Sur Twitter ! ' + ' par : ' + data.name + ' @ ' + 'https://twitter.com/' + data.screen_name + '/status/' + data.id_str);
+            }
+        }
+
     });
 });
+
