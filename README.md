@@ -1,7 +1,7 @@
 # DiscordBotTwitterlive
 A discord bot which send to discord links from selected twitter users<br/>
 We assume you have node installed (I used v7.10)
-
+THIS IS CURRENTLY RUNNING ON MY RASPBERRY PI 3
 
 
  1- just go to https://discordapp.com/  (login/register) then go to developers <br/>
