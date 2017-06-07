@@ -45,6 +45,22 @@ bot.on('message', message => {
     let commandUsed = SC2.parse(message) || CSGO.parse(message) || Google.parse(message) || Bw.parse(message) || Hs.parse(message) || Ow.parse(message) || Dota.parse(message) || Ping.parse(message)
 })
 
+setInterval(() => {
+
+    let url = `https://api.twitch.tv/kraken/streams/THE_STREAM_NAME_AS_IN_URL?client_id=YOUR TWITCH CLIENT_ID`
+    var channel= bot.channels.find("name", "general")
+    request(url, (error, response, body) => {
+    if (!error) {
+        body = JSON.parse(body)
+        if (body.stream) {
+            if (StreamIDs.indexOf(body.stream._id) === -1) {
+                channel.send(`[STREAM] => l live  twitch! `+'https://www.twitch.tv/THE_STREAM_NAME_AS_IN_URL')
+                StreamIDs.push(body.stream._id)
+            }
+        }
+    }
+})
+}, 1000 * 120)
 
 // Wait for the bot to be ready
 bot.on('ready', function() {
