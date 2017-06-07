@@ -5,6 +5,15 @@ const bot = new Discord.Client()
 
 const Google = require('./commands/google')
 const Ping = require('./commands/ping')
+const Google = require('./commands/google')
+const Ping = require('./commands/ping')
+const SC2 = require('./commands/sc2')
+const CSGO = require('./commands/csgo')
+const Dota = require('./commands/dota')
+const Bw = require('./commands/bw')
+const Hs = require('./commands/hs')
+const Ow = require('./commands/ow')
+
 // Init 
 // Twitter
 app = new TweetAlert({
@@ -33,7 +42,7 @@ bot.login('')
 
 
 bot.on('message', message => {
-    let commandUsed = Google.parse(message) || Ping.parse(message)
+    let commandUsed = SC2.parse(message) || CSGO.parse(message) || Google.parse(message) || Bw.parse(message) || Hs.parse(message) || Ow.parse(message) || Dota.parse(message) || Ping.parse(message)
 })
 
 
