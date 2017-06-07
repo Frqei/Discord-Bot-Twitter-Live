@@ -16,6 +16,6 @@ THIS IS CURRENTLY RUNNING ON MY RASPBERRY PI 3
  9- Fill the blanks in the main .js file<br/>
  10- time to npm install and so on<br/>
  11- node tiwtterbot.js<br/>
- 12- you'll need a twitch client_id to ask the kraken api if your stream is LIVE . grab one here : https://dev.twitch.tv/ 
+ 12- you'll need a twitch client_id to ask the kraken api if your stream is LIVE . grab one here : https://dev.twitch.tv/ <br/>
  13- feel free to run it thanks to pm2 or forever eg : https://www.youtube.com/watch?v=RF6Dzwwpduo
  
