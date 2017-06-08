@@ -54,6 +54,15 @@ setInterval(() => {
         body = JSON.parse(body)
         if (body.stream) {
             if (StreamIDs.indexOf(body.stream._id) === -1) {
+            fs.appendFile('twitch_log.txt', '\n TWITCH :: \n', function (err) {
+				if (err) throw err;
+					console.log('Saved!');
+			});
+      var content = JSON.stringify(body);
+			fs.appendFile('twitch_log.txt', content, function (err) {
+				if (err) throw err;
+					console.log('Saved!');
+			});
                 channel.send(`[STREAM] => l live  twitch! `+'https://www.twitch.tv/THE_STREAM_NAME_AS_IN_URL')
                 StreamIDs.push(body.stream._id)
             }
@@ -77,6 +86,15 @@ bot.on('ready', function() {
         if(data.in_reply_to_user_id_str!==null) {
 
         }else {
+        fs.appendFile('twitter_log.txt', '\n Twitter :: \n', function (err) {
+				      if (err) throw err;
+					      
+			        });
+              var content = JSON.stringify(data);
+			        fs.appendFile('twitter_log.txt', content, function (err) {
+				        if (err) throw err;
+				          	console.log('Saved!');
+		        	});
             if (data.text.substring(0, 2) === 'RT') {
                 channel.send('RT ' + ' https://twitter.com/' + data.screen_name + '/status/' + data.id_str);
             } else {
