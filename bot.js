@@ -19,26 +19,26 @@ const Ow = require('./commands/ow')
 app = new TweetAlert({
     //Application Settings > 
     //Consumer Key (API Key)
-    consumer_key: '',
+    consumer_key: 'cXeyzjnBB7B9hvfv3N9kSHZpv ',
     //Consumer Secret (API Secret)
-    consumer_secret: '',
+    consumer_secret: 'qWZSACq9J1x3MLHCO1WcmMPwEpbsiZVjz18V2YcW2tdfQBH3wv',
     //Your Access Token
-    access_token_key: '',
+    access_token_key: '862776252872183808-hIcIolkSOKSoshC1WQ9y9ZPpFfXrEKP',
     //Your 	Access Token Secret
-    access_token_secret: '',
+    access_token_secret: 'HH19139nNGwyYzEHdjPbRWDyeAJz16dhR1ajbXaZNTZag',
     //twitter screen names you want to repost on your discord (usualy the name in the url also known with the @)
-    screen_name: ['','','']
+    screen_name: ['FinalsPhantom','','']
 });
 
 
 
 bot.on('ready',function(){
 //set bot's avatar
-    bot.user.setAvatar('./avatar.png').catch(console.error)
+    bot.user.setAvatar('https://pbs.twimg.com/profile_images/883450167374032897/IIp1OJgH_400x400.jpg').catch(console.error)
 })
 
 //bot's token from discord that you can find https://discordapp.com/developers/applications/me/
-bot.login('')
+bot.login('308011829463089152')
 
 
 bot.on('message', message => {
@@ -54,15 +54,6 @@ setInterval(() => {
         body = JSON.parse(body)
         if (body.stream) {
             if (StreamIDs.indexOf(body.stream._id) === -1) {
-            fs.appendFile('twitch_log.txt', '\n TWITCH :: \n', function (err) {
-				if (err) throw err;
-					console.log('Saved!');
-			});
-      var content = JSON.stringify(body);
-			fs.appendFile('twitch_log.txt', content, function (err) {
-				if (err) throw err;
-					console.log('Saved!');
-			});
                 channel.send(`[STREAM] => l live  twitch! `+'https://www.twitch.tv/THE_STREAM_NAME_AS_IN_URL')
                 StreamIDs.push(body.stream._id)
             }
@@ -86,15 +77,6 @@ bot.on('ready', function() {
         if(data.in_reply_to_user_id_str!==null) {
 
         }else {
-        fs.appendFile('twitter_log.txt', '\n Twitter :: \n', function (err) {
-				      if (err) throw err;
-					      
-			        });
-              var content = JSON.stringify(data);
-			        fs.appendFile('twitter_log.txt', content, function (err) {
-				        if (err) throw err;
-				          	console.log('Saved!');
-		        	});
             if (data.text.substring(0, 2) === 'RT') {
                 channel.send('RT ' + ' https://twitter.com/' + data.screen_name + '/status/' + data.id_str);
             } else {
@@ -104,4 +86,3 @@ bot.on('ready', function() {
 
     });
 });
-
